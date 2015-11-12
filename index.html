@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="libs/jquery/1.7.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="libs/jqueryui/1.8.16/themes/black-tie/jquery-ui.css">
+<script type="text/javascript" src="libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="libs/syntaxhighligher/3.0.83/css/shCore.css">
+<link rel="stylesheet" type="text/css" href="libs/syntaxhighligher/3.0.83/css/shThemeFadeToGrey.css">
+<script type="text/javascript" src="libs/syntaxhighligher/3.0.83/js/shCore.js"></script>
+<script type="text/javascript" src="libs/syntaxhighligher/3.0.83/js/shBrushJScript.js"></script>
+
+<link rel="stylesheet" type="text/css" href="present.css">
+<script type="text/javascript" src="dependencies.js"></script>
+<script type="text/javascript" src="present.js"></script>
+
+<title>Business test page</title>
+
+</head>
+<body>
+
+<div id="container">
+    <div id="content">
+        <button id="install-extension" class="button test-element">Install Rutoken Web extension</button>
+        <div class="test-common ui-widget-content ui-corner-all" id="ui-controls">
+            <div class="test-common">
+                <label for="device-list">Активное устройство: </label>
+                <select id="device-list" class="item-list">
+                    <option>Проверьте подключение устройства</option>
+                </select>
+                <button id="refresh-dev" class="refresh-btn">↓↑</button>
+            </div>
+            <div class="test-common">
+                <label for="cert-list">Контейнеры на уcтройстве: </label>
+                <select id="cert-list" class="item-list">
+                    <option>Обновите список контейнеров</option>
+                </select>
+                <button id="refresh-certs" class="refresh-btn">↓↑</button>
+           </div>
+           <div class="test-common">
+                <label for="use-css">Использовать CSS: </label>
+                <input type="checkbox" id="use-css" checked="checked"/>
+           </div>
+        </div>
+        <div id="section">
+            <ul>
+                <li><a href="#section-1">Работа с устройством</a></li>
+                <li><a href="#section-2">Работа с контейнерами</a></li>
+                <li><a href="#section-3">Криптография</a></li>
+                <li><a href="#section-4">Асинхронный вызов</a></li>
+                <li><a href="#section-5">CSS</a></li>
+            </ul>
+            <div id="section-1">
+                <div id="pluginVersion" class="test ui-widget-content ui-corner-all"></div>
+                <div id="IsTokenPresentAndOK" class="test ui-widget-content ui-corner-all"></div>
+                <div id="GetDeviceID" class="test ui-widget-content ui-corner-all"></div>
+                <div id="UserLoginDlg" class="test ui-widget-content ui-corner-all"></div>
+                <div id="Logout" class="test ui-widget-content ui-corner-all"></div>
+                <div id="IsUserLoggedIn" class="test ui-widget-content ui-corner-all"></div>
+                <div id="Repair" class="test ui-widget-content ui-corner-all">
+                    <label for="priv_key" class="test-element">Private Key:</label>
+                    <textarea id="priv_key" class="text-input test-element">2BE1AFE68F9FE586F36C626FABF9DFC316491742EC793388EFADDE81FE34F3DC</textarea>
+                    <label for="repair-hash" class="test-element">Hash:</label>
+                    <textarea id="repair-hash" class="text-input test-element">2BE1AFE68F9FE586F36C626FABF9DFC316491742EC793388EFADDE81FE34F3DC</textarea>
+                </div>
+            </div>
+            <div id="section-2">
+                <div id="GetNumberOfContainers" class="test ui-widget-content ui-corner-all"></div>
+                <div id="GenKeyPair" class="test ui-widget-content ui-corner-all">
+                    <label for="container" class="temp">Имя контейнера:</label>
+                    <input id="container-id" value="test" class="test-element input"/>
+                </div>
+                <div id="GetContainerName" class="test ui-widget-content ui-corner-all">
+                    <label for="containerIndex" class="temp">Номер контейнера:</label>
+                    <input id="container-index" value="0" class="test-element input"/>
+                </div>
+                <div id="GetPublicKey" class="test ui-widget-content ui-corner-all"></div>
+                <div id="GetRepairKey" class="test ui-widget-content ui-corner-all"></div>
+                <div id="DestroyContainer" class="test ui-widget-content ui-corner-all"></div>
+            </div>
+            <div id="section-3">
+                <div id="Sign" class="test ui-widget-content ui-corner-all">
+                    <label for="hash" class="temp">Хеш:</label>
+                    <textarea id="hash" class="text-input test-element">2BE1AFE68F9FE586F36C626FABF9DFC316491742EC793388EFADDE81FE34F3DC</textarea>
+                </div>
+                <div id="HashSign" class="test ui-widget-content ui-corner-all">
+                    <label for="message-body" class="test-element">Сообщение:</label>
+                    <textarea id="message-body" class="text-input test-element"><!PINPADFILE RU><!>невидимый текст<N>Плательщик:<V>Иванов Иван Иванович<N>Номер счета плательщика:<V>42301810001000075212<N>Сумма:<V>150000<N>Валюта:<V>RUR<N>Получатель:<V>Петров Петр Петрович<N>Номер счета получателя:<V>40817810338295201618<N>Назначение платежа:<V>перевод личных средств</textarea>
+                </div>
+                <div id="MakeSessionKey" class="test ui-widget-content ui-corner-all">
+                    <label for="ukm" class="test-element">ukm:</label>
+                    <input id="ukm" value="1234567812345678" class="test-element input"/>
+                    <label for="public-key" class="test-element">Public key:</label>
+                    <textarea id="public-key" class="text-input test-element">8A5242A3853E1A540C6439D8179B3700FDF5658D74DE4C63213E9EBE0B6B72C57C7F0C7D5FDCB412FF4311DDD31094103643A24CD4DAEC3AAABC9468C33AE440</textarea>
+                </div>
+            </div>
+            <div id="section-4">
+                <div id="ParallelCall" class="test ui-widget-content ui-corner-all"></div>
+            </div>
+            <div id="section-5">
+                <div id="CSS" class="ui-widget-content ui-corner-all">
+                    <label for="dialog-css" class="test-element">CSS:</label><br/>
+                    <textarea id="dialog-css" name="dialog-css" class="text-input">* {
+  background-color: transparent;
+}
+QPushButton {
+  min-width: 75px;
+  min-height: 25px;
+  border-radius: 5px;
+  background-color: #222222;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+QPushButton:hover {
+  background-color: #222222;
+  color: #CCCCCC;
+}
+QLabel {
+  color: #fff;
+}
+QLineEdit {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #FFFFFF;
+  color: #0;
+}
+QDialog {
+  background-color: #0;
+}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="console"></div>
+</div>
+
+</body>
+</html>
+<!-- vim: tabstop=4:softtabstop=4:shiftwidth=4:expandtab
+->
