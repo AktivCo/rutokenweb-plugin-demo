@@ -139,3 +139,6 @@ label {
     margin-right: 10px;
 }
 
+#install-extension {
+    display: none;
+}

@@ -596,18 +596,42 @@ function onPluginLoaded(pluginObject) {
 }
 
 window.onload = function () {
-    rutokenweb.ready.then(function () {
-        if (window.chrome) {
+    var p = rutokenweb.ready;
+
+    if (window.chrome && window.opr && window.opr.addons) {
+        p = p.then(function () {
             return rutokenweb.isExtensionInstalled();
-        } else {
-            return Promise.resolve(true);
-        }
-    }).then(function (result) {
-        if (result) {
-            return rutokenweb.isPluginInstalled();
-        } else {
-            throw "Rutoken Web Extension wasn't found";
-        }
+        }).then(function (result) {
+            if (result) {
+                return true;
+            } else {
+                return new Promise(function (resolve, reject) {
+                    var button = $('#install-extension');
+
+                    button.click(function () {
+                        rutokenweb.installExtension().then(function () {
+                            location.reload();
+                        }, reject);
+                    });
+
+                    button.show();
+                });
+            }
+        });
+    } else if (window.chrome) {
+        p = p.then(function () {
+            return rutokenweb.isExtensionInstalled();
+        }).then(function (result) {
+            if (result) {
+                return true;
+            } else {
+                throw "Rutoken Web Extension wasn't found";
+            }
+        });
+    }
+
+    p.then(function () {
+        return rutokenweb.isPluginInstalled();
     }).then(function (result) {
         if (result) {
             return rutokenweb.loadPlugin();
@@ -621,4 +645,4 @@ window.onload = function () {
     }).then(undefined, function (reason) {
         console.log(reason);
     });
-}
+};
